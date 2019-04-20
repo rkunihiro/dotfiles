@@ -1,0 +1,41 @@
+{
+    "name": "@rkunihiro/dotfiles",
+    "version": "1.0.0",
+    "description": "",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rkunihiro/dotfiles.git"
+    },
+    "private": true,
+    "workspaces": [],
+    "scripts": {
+        "dev": "webpack-dev-server",
+        "build": "webpack --mode=production"
+    },
+    "dependencies": {
+        "@babel/polyfill": "^7.4.0",
+        "core-js": "^3.0.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.0.0",
+        "@babel/core": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "@babel/preset-react": "^7.0.0",
+        "@types/node": "^11.0.0",
+        "@types/terser-webpack-plugin": "^1.0.0",
+        "@types/webpack": "^4.0.0",
+        "@types/webpack-dev-server": "^3.0.0",
+        "babel-loader": "^8.0.5",
+        "prettier": "^1.0.0",
+        "terser-webpack-plugin": "^1.0.0",
+        "ts-loader": "^5.3.3",
+        "ts-node": "^8.1.0",
+        "tsconfig-paths": "^3.8.0",
+        "tslint": "^5.0.0",
+        "typescript": "^3.4.0",
+        "webpack": "^4.30.0",
+        "webpack-cli": "^3.3.0",
+        "webpack-dev-server": "^3.3.0"
+    }
+}
