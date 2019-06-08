@@ -1,14 +1,17 @@
 /.idea/
 /.vscode/
 
-/vendor/
+/dist/
 /node_modules/
+/vendor/
 
 *.d.ts
 *.map
 *.log
 *.swp
 *.lock
+
+!global.d.ts
 
 ._*
 .DS_Store

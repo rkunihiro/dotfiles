@@ -1,7 +1,7 @@
 // https://www.typescriptlang.org/docs/handbook/compiler-options.html
 {
     "compilerOptions": {
-        "target": "es2018",
+        "target": "esnext",
         "module": "commonjs",
         "lib": ["esnext", "dom"],
         // "allowJs": true,
@@ -14,9 +14,9 @@
         // "mapRoot": "",
         // "inlineSourceMap": true,
         // "inlineSources": true,
-        "rootDir": "./",
-        "outDir": "./",
-        "incremental": true,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        // "incremental": true,
         // "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
         "strict": true,
         // "noImplicitAny": true,
@@ -31,16 +31,13 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "moduleResolution": "node",
-        "baseUrl": "./",
+        "baseUrl": "./src",
         "paths": {},
-        "typeRoots": [
-            "node_modules/@types"
-        ],
+        // "typeRoots": [],
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
-
         // "removeComments": true,
         // "noEmit": true,
         // "importHelpers": true,
@@ -50,6 +47,6 @@
         // "allowUmdGlobalAccess": true,
         // "sourceRoot": "",
     },
-    "include": ["."],
-    "exclude": ["node_modules"]
+    "include": ["./src", "./global.d.ts"],
+    "exclude": ["node_modules", "./dist"]
 }

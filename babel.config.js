@@ -7,13 +7,17 @@ module.exports = {
                 loose: true,
                 modules: "commonjs",
                 targets: {
-                    chrome: 64,
-                    ios: 9,
-                    ie: 11,
+                    chrome: 88, // 64,
+                    ios: 14, // 9,
+                    // ie: 11,
                 },
                 useBuiltIns: "usage",
-                corejs: 3,
+                corejs: "3.10",
             },
         ],
+        // Transpile TypeScript using Babel
+        "@babel/preset-typescript",
+        // Support React JSX
+        "@babel/preset-react",
     ],
 };
