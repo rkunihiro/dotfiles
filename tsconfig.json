@@ -1,14 +1,23 @@
+// https://www.typescriptlang.org/docs/handbook/compiler-options.html
 {
     "compilerOptions": {
         "target": "es2018",
         "module": "commonjs",
         "lib": ["esnext", "dom"],
+        // "allowJs": true,
+        // "checkJs": true,
         "jsx": "react",
+        // "composite": true,
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
+        // "mapRoot": "",
+        // "inlineSourceMap": true,
+        // "inlineSources": true,
         "rootDir": "./",
         "outDir": "./",
+        "incremental": true,
+        // "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
         "strict": true,
         // "noImplicitAny": true,
         // "noImplicitThis": true,
@@ -18,7 +27,7 @@
         // "strictFunctionTypes": true,
         // "strictPropertyInitialization": true,
         "noUnusedLocals": true,
-        // "noUnusedParameters": true,
+        "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "moduleResolution": "node",
@@ -31,6 +40,15 @@
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
+
+        // "removeComments": true,
+        // "noEmit": true,
+        // "importHelpers": true,
+        // "downlevelIteration": true,
+        // "isolatedModules": true,
+        // "preserveSymlinks": true,
+        // "allowUmdGlobalAccess": true,
+        // "sourceRoot": "",
     },
     "include": ["."],
     "exclude": ["node_modules"]
