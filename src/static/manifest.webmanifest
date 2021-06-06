@@ -1,0 +1,20 @@
+{
+    "lang": "ja",
+    "dir": "ltr",
+    "name": "name",
+    "short_name": "short_name",
+    "description": "description",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "144x144",
+            "type": "image/svg+xml"
+        }
+    ],
+    "scope": "/",
+    "start_url": "/index.html",
+    "display": "fullscreen",
+    "orientation": "landscape",
+    "theme_color": "black",
+    "background_color": "white"
+}
