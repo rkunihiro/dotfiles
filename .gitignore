@@ -1,9 +1,12 @@
 /.idea/
 /.vscode/
 
+/coverage
 /dist/
 /node_modules/
 /vendor/
+
+__snapshots__/
 
 *.d.ts
 *.map

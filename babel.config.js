@@ -1,3 +1,6 @@
+/**
+ * @type {import("@babel/core").TransformOptions}
+ */
 module.exports = {
     presets: [
         [
@@ -6,12 +9,12 @@ module.exports = {
                 loose: true,
                 modules: "commonjs",
                 targets: {
-                    chrome: 88, // 64,
+                    chrome: 94, // 64,
                     ios: 14, // 9,
                     // ie: 11,
                 },
                 useBuiltIns: "usage",
-                corejs: "3.13",
+                corejs: "3.19",
                 // debug: true,
             },
         ],

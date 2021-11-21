@@ -3,19 +3,33 @@
  * @type {import("stylelint").Configuration}
  */
 module.exports = {
-    // plugins: [
-    //     // https://github.com/hudochenkov/stylelint-order
-    //     "stylelint-order",
-    //     // https://github.com/kristerkari/stylelint-scss
-    //     "stylelint-scss",
-    // ],
+    plugins: [
+        // https://github.com/stylelint-scss/stylelint-scss
+        // "stylelint-scss",
+
+        // https://github.com/hudochenkov/stylelint-order
+        "stylelint-order",
+    ],
     extends: [
         // https://github.com/stylelint/stylelint-config-standard
-        "stylelint-config-standard",
-        // https://github.com/bjankord/stylelint-config-sass-guidelines
-        "stylelint-config-sass-guidelines",
+        // "stylelint-config-standard",
+
+        // [SCSS]
+
+        // https://github.com/stylelint-scss/stylelint-config-standard-scss
+        // "stylelint-config-standard-scss",
+
+        // https://github.com/stylelint-scss/stylelint-config-recommended-scss
+        "stylelint-config-recommended-scss",
+
+        // [Order]
+        // https://github.com/stormwarning/stylelint-config-recess-order
+        // "stylelint-config-recess-order",
+
         // https://github.com/prettier/stylelint-config-prettier
         "stylelint-config-prettier",
     ],
-    rules: {},
+    rules: {
+        "order/properties-alphabetical-order": true,
+    },
 };
