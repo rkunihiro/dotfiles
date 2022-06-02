@@ -16,10 +16,22 @@ module.exports = {
 
     overrides: [
         {
-            files: ["*.yml", "*.yaml"],
+            files: ["Makefile", "makefile", "*.mk"],
             options: {
-                singleQuote: true,
+                useTabs: true,
+            },
+        },
+        {
+            files: "*.go",
+            options: {
+                useTabs: true,
+            },
+        },
+        {
+            files: ["*.yaml", "*.yml"],
+            options: {
                 tabWidth: 2,
+                singleQuote: true,
             },
         },
     ],
