@@ -1,14 +1,14 @@
-const path = require("path");
+const { resolve } = require("node:path");
 
 const entry = {
-    main: path.resolve(__dirname, "./src/index.tsx"),
+    main: resolve(__dirname, "./src/index.tsx"),
 };
 
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const copyPlugin = new CopyWebpackPlugin({
     patterns: [
         {
-            from: path.resolve(__dirname, "./src/static"),
+            from: resolve(__dirname, "./src/static"),
         },
     ],
 });
@@ -16,22 +16,13 @@ const copyPlugin = new CopyWebpackPlugin({
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const htmlPlugin = new HtmlWebpackPlugin({
     filename: "index.html",
-    template: path.resolve(__dirname, "src/index.html"),
+    template: resolve(__dirname, "src/index.html"),
     inject: "head", // "body",
 });
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
     filename: "[name]-[contenthash].css",
-});
-
-const TerserPlugin = require("terser-webpack-plugin");
-const terserPlugin = new TerserPlugin({
-    terserOptions: {
-        compress: {
-            drop_console: true,
-        },
-    },
 });
 
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
@@ -45,7 +36,20 @@ const tsRule = {
     exclude: /node_modules/,
     use: [
         {
-            loader: "babel-loader",
+            loader: "esbuild-loader",
+            /** @type {import("esbuild").BuildOptions} */
+            options: {
+                loader: "tsx",
+                platform: "browser",
+                target: [
+                    //
+                    // "es2021",
+                    // "node16",
+                    "chrome104",
+                    "safari15",
+                ],
+                keepNames: true,
+            },
         },
     ],
 };
@@ -107,7 +111,7 @@ module.exports = (_env, args) => {
         mode,
         entry,
         output: {
-            path: path.resolve(__dirname, "./dist"),
+            path: resolve(__dirname, "./dist"),
             filename: "[name]-[contenthash].js",
         },
         module: {
@@ -131,7 +135,6 @@ module.exports = (_env, args) => {
         ],
         optimization: {
             minimize: isProduction,
-            minimizer: [terserPlugin],
             splitChunks,
         },
         devServer: {
