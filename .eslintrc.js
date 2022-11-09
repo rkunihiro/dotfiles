@@ -91,5 +91,6 @@ module.exports = {
         // React rules
         // https://github.com/jsx-eslint/eslint-plugin-react#list-of-supported-rules
         "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
     },
 };

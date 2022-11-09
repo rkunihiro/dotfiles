@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 import "./global.scss";
+
 import { App } from "./component/App";
 
 const container = document.body;
-ReactDOM.render(<App />, container);
+createRoot(container).render(<App />);
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js");
