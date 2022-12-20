@@ -18,5 +18,5 @@ indent_style = tab
 [*.go]
 indent_style = tab
 
-[*.yml]
+[{*.yaml,*.yml}]
 indent_size = 2
