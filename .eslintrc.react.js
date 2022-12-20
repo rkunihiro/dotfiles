@@ -4,7 +4,7 @@ module.exports = {
     // Specifying Environments
     // https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
     env: {
-        // browser: true,
+        browser: true,
         node: true,
         commonjs: true,
         es2021: true,
@@ -16,10 +16,16 @@ module.exports = {
         "@typescript-eslint",
         "import",
         "jest",
+        "react",
+        "react-hooks",
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
         project: "./tsconfig.json",
+        // ecmaFeatures: {
+        //     jsx: true,
+        // },
+        // ecmaVersion: 2018,
     },
     settings: {
         "import/parsers": {
@@ -30,11 +36,16 @@ module.exports = {
                 project: ["tsconfig.json"],
             },
         },
+        "react": {
+            version: "detect",
+        },
     },
     extends: [
         // "eslint:all",
         "eslint:recommended",
         "plugin:import/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "plugin:jest/recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier",
@@ -84,6 +95,11 @@ module.exports = {
                 "alphabetize": { order: "asc", caseInsensitive: false },
             },
         ],
+
+        // React rules
+        // https://github.com/jsx-eslint/eslint-plugin-react#list-of-supported-rules
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
     },
     ignorePatterns: [
         //
