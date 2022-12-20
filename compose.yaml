@@ -1,0 +1,62 @@
+services:
+  node:
+    image: node:18.12.1-bullseye-slim
+    container_name: dotfiles-container-node
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+      NODE_MODULE: development
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - default
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app:cached
+    init: true
+    tty: true
+
+  db:
+    # image: mysql:8.0.31-oracle
+    image: mariadb:10.10.2-jammy
+    container_name: dotfiles-container-db
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dbname
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - default
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.devcontainer/db/conf:/etc/mysql/conf.d:ro
+      - ./.devcontainer/db/init:/docker-entrypoint-initdb.d:ro
+      # - ./.devcontainer/db/logs:/var/log/mysql:rw
+    healthcheck:
+      interval: 10s
+      retries: 10
+      test: ['CMD', 'mysqladmin', 'ping', '-u', 'user', '-ppassword']
+      timeout: 10s
+      start_period: 60s
+
+  redis:
+    image: redis:7.0.7-bullseye
+    container_name: dotfiles-container-redis
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+    networks:
+      - default
+    ports:
+      - 6379:6379
+
+networks:
+  default:
+    name: dotfiles-network-default
