@@ -2,9 +2,10 @@
 /.vscode/
 
 /coverage
-/dist/
-/node_modules/
-/vendor/
+/docker
+/dist
+/node_modules
+/vendor
 
 *.map
 *.log

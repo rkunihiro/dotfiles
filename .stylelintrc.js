@@ -12,7 +12,7 @@ module.exports = {
     ],
     extends: [
         // https://github.com/stylelint/stylelint-config-standard
-        // "stylelint-config-standard",
+        "stylelint-config-standard",
 
         // [SCSS]
 
@@ -25,9 +25,6 @@ module.exports = {
         // [Order]
         // https://github.com/stormwarning/stylelint-config-recess-order
         // "stylelint-config-recess-order",
-
-        // https://github.com/prettier/stylelint-config-prettier
-        "stylelint-config-prettier",
     ],
     rules: {
         "order/properties-alphabetical-order": true,

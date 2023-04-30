@@ -1,8 +1,6 @@
-import React from "react";
-
 import { Header } from "./Header";
 
-export const App: React.FC = () => {
+export function App(): JSX.Element {
     console.log("App render");
     return (
         <>
@@ -12,4 +10,4 @@ export const App: React.FC = () => {
             </main>
         </>
     );
-};
+}
