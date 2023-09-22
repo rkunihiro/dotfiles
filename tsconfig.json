@@ -12,15 +12,12 @@
         // "experimentalDecorators": true,
         // "emitDecoratorMetadata": true,
 
-        "rootDir": "./src",
-        // "outDir": "./",
-        // "declarationDir": "./",
-
         "module": "commonjs",
-        "moduleResolution": "node",
+        "moduleResolution": "node10",
         // "module": "es2022",
-        // "moduleResolution": "bundler",
-
+        // "moduleResolution": "bundle",
+        // "rootDir": "./",
+        // "outDir": "./",
         // "baseUrl": "./",
         // "paths": {},
         // "allowImportingTsExtensions": true,
