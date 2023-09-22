@@ -16,6 +16,7 @@ module.exports = {
         //
         "@typescript-eslint",
         "import",
+        "unicorn",
         "jest",
     ],
     parser: "@typescript-eslint/parser",
@@ -36,13 +37,16 @@ module.exports = {
         // "eslint:all",
         "eslint:recommended",
         "plugin:import/recommended",
+        "plugin:unicorn/recommended",
         "plugin:jest/recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier",
     ],
     rules: {
+        // --------------------------------------------------
         // ESLint rules
         // https://eslint.org/docs/rules/
+        // --------------------------------------------------
         "array-callback-return": "error",
         "no-await-in-loop": "error",
         "no-constructor-return": "error",
@@ -74,8 +78,10 @@ module.exports = {
         // "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
         "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
 
+        // --------------------------------------------------
         // Import order
         // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+        // --------------------------------------------------
         // "sort-imports": "off",
         "import/order": [
             "error",
@@ -83,6 +89,39 @@ module.exports = {
                 "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
                 "newlines-between": "always",
                 "alphabetize": { order: "asc", caseInsensitive: false },
+            },
+        ],
+
+        // --------------------------------------------------
+        // Unicorn rules
+        // https://github.com/sindresorhus/eslint-plugin-unicorn
+        // --------------------------------------------------
+        // ファイル名のケースルール
+        "unicorn/filename-case": [
+            "error",
+            {
+                cases: {
+                    camelCase: true,
+                    pascalCase: true,
+                },
+            },
+        ],
+        "unicorn/prevent-abbreviations": [
+            "error",
+            {
+                extendDefaultReplacements: true, // デフォルトのreplacementsを使用する
+                replacements: {
+                    props: false,
+                },
+                extendDefaultAllowList: true, // デフォルトのallowListを使用する
+                allowList: {}, // 除外する識別子(完全一致)
+                checkDefaultAndNamespaceImports: "internal",
+                checkShorthandImports: "internal",
+                checkShorthandProperties: true,
+                checkProperties: true,
+                checkVariables: true,
+                checkFilenames: true,
+                ignore: [],
             },
         ],
     },
