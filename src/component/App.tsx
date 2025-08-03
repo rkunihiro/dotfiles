@@ -1,6 +1,9 @@
-import { Header } from "./Header";
+import type { JSX } from "react";
+
+import { Header } from "./Header.tsx";
 
 export function App(): JSX.Element {
+    // eslint-disable-next-line no-console
     console.log("App render");
     return (
         <>
