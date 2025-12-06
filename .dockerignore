@@ -1,11 +1,12 @@
-/.idea/
-/.vscode/
+.idea/
+.vscode/
+.zed/
 
-/coverage
-/docker
-/dist
-/node_modules
-/vendor
+coverage/
+dist/
+node_modules/
+out/
+vendor/
 
 *.map
 *.log
