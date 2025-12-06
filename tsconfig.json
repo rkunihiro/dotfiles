@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        // "incremental": true,
+        "incremental": true,
         // "composite": true,
-        // "tsBuildInfoFile": "./.tsbuildinfo",
+        "tsBuildInfoFile": "./.tsbuildinfo",
 
         "target": "esnext",
         "lib": ["esnext", "dom", "dom.iterable"],
@@ -28,7 +28,7 @@
         // "allowArbitraryExtensions": true,
         // "noResolve": true,
 
-        // "allowJs": true,
+        "allowJs": true,
         // "checkJs": true,
         // "maxNodeModuleJsDepth": 1,
 

@@ -1,10 +1,20 @@
-const { resolve } = require("node:path");
+import { dirname, resolve } from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { WebpackManifestPlugin } from "webpack-manifest-plugin";
+import { GenerateSW } from "workbox-webpack-plugin";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const entry = {
     main: resolve(__dirname, "./src/index.tsx"),
 };
 
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const copyPlugin = new CopyWebpackPlugin({
     patterns: [
         {
@@ -12,23 +22,15 @@ const copyPlugin = new CopyWebpackPlugin({
         },
     ],
 });
-
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const htmlPlugin = new HtmlWebpackPlugin({
     filename: "index.html",
     template: resolve(__dirname, "src/index.html"),
     inject: "head", // "body",
 });
-
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
     filename: "[name]-[contenthash].css",
 });
-
-const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const webpackManifestPlugin = new WebpackManifestPlugin();
-
-const { GenerateSW } = require("workbox-webpack-plugin");
 const workboxPlugin = new GenerateSW({});
 
 const tsRule = {
@@ -55,7 +57,7 @@ const tsRule = {
 };
 
 const scssRule = {
-    test: /\.s[ac]ss$/,
+    test: /\.scss$/,
     exclude: /node_modules/,
     use: [
         MiniCssExtractPlugin.loader,
@@ -63,6 +65,9 @@ const scssRule = {
             loader: "css-loader",
             options: {
                 url: false,
+                modules: {
+                    namedExport: false,
+                },
             },
         },
         {
@@ -104,7 +109,7 @@ const splitChunks = {
 /**
  * @returns {import("webpack").Configuration}
  */
-module.exports = (_env, args) => {
+export default function config(_env, args) {
     const isProduction = args.mode === "production" || process.env.NODE_ENV === "production";
     const mode = isProduction ? "production" : "development";
     return {
@@ -141,4 +146,4 @@ module.exports = (_env, args) => {
             port: 3000,
         },
     };
-};
+}
