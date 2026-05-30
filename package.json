@@ -8,8 +8,8 @@
         "url": "https://github.com/rkunihiro/dotfiles.git"
     },
     "engines": {
-        "node": ">=16.15",
-        "npm": ">=8.5"
+        "node": ">=22",
+        "npm": ">=10"
     },
     "private": true,
     "type": "module",
