@@ -15,32 +15,32 @@
     "type": "module",
     "workspaces": [],
     "dependencies": {
-        "react": "^19.2.4",
-        "react-dom": "^19.2.4"
+        "react": "^19.2.6",
+        "react-dom": "^19.2.6"
     },
     "devDependencies": {
-        "@types/node": "^25.5.0",
-        "@types/react": "^19.2.14",
+        "@types/node": "^25.9.1",
+        "@types/react": "^19.2.15",
         "@types/react-dom": "^19.2.3",
-        "autoprefixer": "^10.4.27",
+        "autoprefixer": "^10.5.0",
         "concurrently": "^9.2.1",
-        "dprint": "^0.53.2",
-        "esbuild": "^0.27.5",
+        "dprint": "^0.54.0",
+        "esbuild": "^0.28.0",
         "eslint": "^9.39.4",
         "eslint-config-prettier": "^10.1.8",
         "eslint-import-resolver-typescript": "^4.4.4",
         "eslint-plugin-import": "^2.32.0",
         "eslint-plugin-react": "^7.37.5",
-        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-react-hooks": "^7.1.1",
         "eslint-plugin-unicorn": "^64.0.0",
         "identity-obj-proxy": "^3.0.0",
-        "postcss": "^8.5.8",
-        "sass": "^1.98.0",
+        "postcss": "^8.5.15",
+        "sass": "^1.100.0",
         "serve": "^14.2.6",
         "tsconfig-paths": "^4.2.0",
-        "tsx": "^4.21.0",
-        "typescript": "^6.0.2",
-        "typescript-eslint": "^8.58.0"
+        "tsx": "^4.22.3",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.60.0"
     },
     "scripts": {
         "lint": "concurrently npm:lint:*",
@@ -50,10 +50,6 @@
         "fix": "concurrently npm:fix:*",
         "fix:dprint": "dprint format './src/**/*'",
         "fix:eslint": "eslint --fix ./src",
-        "test": "node --test ./src",
-        "dev": "webpack serve",
-        "clean": "rm -rf ./dist",
-        "build": "npm run clean && webpack --mode=production",
-        "serve": "serve -p 3000 ./dist"
+        "test": "node --test ./src"
     }
 }
