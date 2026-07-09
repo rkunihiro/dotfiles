@@ -1,0 +1,12 @@
+[core]
+	autocrlf = input
+	editor = vi
+	excludesfile = ~/.gitignore_global
+	filemode = true
+[init]
+	defaultBranch = main
+[fetch]
+	prune = true
+[pull]
+	ff = only
+	rebase = true
