@@ -8,39 +8,32 @@
         "url": "https://github.com/rkunihiro/dotfiles.git"
     },
     "engines": {
-        "node": ">=22",
-        "npm": ">=10"
+        "node": ">=24",
+        "npm": ">=11"
     },
     "private": true,
     "type": "module",
     "workspaces": [],
     "dependencies": {
-        "react": "^19.2.6",
-        "react-dom": "^19.2.6"
+        "react": "^19.2.7",
+        "react-dom": "^19.2.7"
     },
     "devDependencies": {
-        "@types/node": "^25.9.1",
-        "@types/react": "^19.2.15",
+        "@eslint/js": "^10.0.1",
+        "@types/node": "^26.1.0",
+        "@types/react": "^19.2.17",
         "@types/react-dom": "^19.2.3",
-        "autoprefixer": "^10.5.0",
-        "concurrently": "^9.2.1",
-        "dprint": "^0.54.0",
-        "esbuild": "^0.28.0",
-        "eslint": "^9.39.4",
-        "eslint-config-prettier": "^10.1.8",
-        "eslint-import-resolver-typescript": "^4.4.4",
-        "eslint-plugin-import": "^2.32.0",
-        "eslint-plugin-react": "^7.37.5",
-        "eslint-plugin-react-hooks": "^7.1.1",
-        "eslint-plugin-unicorn": "^64.0.0",
-        "identity-obj-proxy": "^3.0.0",
-        "postcss": "^8.5.15",
-        "sass": "^1.100.0",
+        "autoprefixer": "^10.5.2",
+        "concurrently": "^10.0.3",
+        "dprint": "^0.55.1",
+        "esbuild": "^0.28.1",
+        "eslint": "^10.6.0",
+        "postcss": "^8.5.16",
+        "sass": "^1.101.0",
         "serve": "^14.2.6",
-        "tsconfig-paths": "^4.2.0",
-        "tsx": "^4.22.3",
+        "tsx": "^4.23.0",
         "typescript": "^6.0.3",
-        "typescript-eslint": "^8.60.0"
+        "typescript-eslint": "^8.62.1"
     },
     "scripts": {
         "lint": "concurrently npm:lint:*",
