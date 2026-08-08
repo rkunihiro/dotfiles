@@ -1,11 +1,111 @@
 services:
-  node:
-    image: node:18.16.0-bullseye-slim
-    container_name: dotfiles-container-node
+  aws:
+    image: floci/floci:1.5.34-compat
+    container_name: dotfiles-aws
     environment:
       LANG: C.UTF-8
       TZ: UTC
-      NODE_MODULE: development
+      AWS_DEFAULT_REGION: ap-northeast-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_ENDPOINT_URL: http://localhost:4566
+      # https://floci.io/floci/configuration/environment-variables/
+      FLOCI_DEFAULT_REGION: ap-northeast-1
+      FLOCI_DEFAULT_AVAILABILITY_ZONE: ap-northeast-1a
+      FLOCI_DEFAULT_ACCOUNT_ID: 000000000000 # Default AWS account ID
+      # FLOCI_STORAGE_MODE: hybrid # memory · persistent · hybrid · wal
+      # FLOCI_STORAGE_PERSISTENT_PATH: ./data # Data directory
+    networks:
+      - default
+    ports:
+      - 4566:4566
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker/aws/init/ready.d:/etc/floci/init/ready.d:ro
+      - ./docker/aws/init/json:/init/json:ro
+      - ./docker/aws/init/data:/init/data:ro
+
+  awscli:
+    image: amazon/aws-cli:2.36.11
+    container_name: dotfiles-awscli
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+      AWS_DEFAULT_REGION: ap-northeast-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_ENDPOINT_URL: http://aws:4566
+    networks:
+      - default
+    volumes:
+      - .:/app:cached
+    working_dir: /app
+    entrypoint: ["/bin/bash"]
+    tty: true
+
+  db:
+    image: mysql:9.7.2-oraclelinux9
+    # image: mariadb:12.3.2-noble
+    container_name: dotfiles-db
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dbname
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - default
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/db/conf:/etc/mysql/conf.d:ro
+      - ./docker/db/init:/docker-entrypoint-initdb.d:ro
+      # - ./docker/db/logs:/var/log/mysql:rw
+    healthcheck:
+      interval: 10s
+      retries: 10
+      test: ["CMD", "mysqladmin", "ping", "-u", "user", "-ppassword"]
+      timeout: 10s
+      start_period: 60s
+
+  mongo:
+    image: mongo:8.3.7-noble
+    # image: mongo:8.0.28-noble
+    # image: mongo:7.0.39-jammy
+    container_name: dotfiles-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: test
+      GLIBC_TUNABLES: glibc.pthread.rseq=1
+    networks:
+      - default
+    ports:
+      - 27017:27017
+    user: 999:999
+    volumes:
+      - ./docker/mongo/init:/docker-entrypoint-initdb.d:ro
+
+  redis:
+    #image: redis:8.10.0-trixie
+    image: valkey/valkey:9.1.1-trixie
+    container_name: dotfiles-redis
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+    networks:
+      - default
+    ports:
+      - 6379:6379
+
+  node:
+    image: node:24.19.0-trixie-slim
+    container_name: dotfiles-node
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+      NODE_ENV: development
     depends_on:
       db:
         condition: service_healthy
@@ -19,43 +119,6 @@ services:
       - .:/app:cached
     init: true
     tty: true
-
-  db:
-    # image: mysql:8.0.33-oracle
-    image: mariadb:10.11.2-jammy
-    container_name: dotfiles-container-db
-    environment:
-      LANG: C.UTF-8
-      TZ: UTC
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dbname
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-    networks:
-      - default
-    ports:
-      - 3306:3306
-    volumes:
-      - ./.devcontainer/db/conf:/etc/mysql/conf.d:ro
-      - ./.devcontainer/db/init:/docker-entrypoint-initdb.d:ro
-      # - ./.devcontainer/db/logs:/var/log/mysql:rw
-    healthcheck:
-      interval: 10s
-      retries: 10
-      test: ["CMD", "mysqladmin", "ping", "-u", "user", "-ppassword"]
-      timeout: 10s
-      start_period: 60s
-
-  redis:
-    image: redis:7.0.11-bullseye
-    container_name: dotfiles-container-redis
-    environment:
-      LANG: C.UTF-8
-      TZ: UTC
-    networks:
-      - default
-    ports:
-      - 6379:6379
 
 networks:
   default:
