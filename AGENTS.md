@@ -18,7 +18,7 @@
 - Do not hard-code secrets, API keys, or tokens in the code.
 - Do not edit files that meet either of the following conditions:
   - The filename contains `generated`.
-  - The beginning of the file contains `DO NOT EDIT`.
+  - The file begins with `DO NOT EDIT`.
 
 ## Git
 
